@@ -2,6 +2,7 @@ var yVal;
 var acceleration;
 var snelheid;
 var mass;
+var rechthoek = [];
 
 
 
