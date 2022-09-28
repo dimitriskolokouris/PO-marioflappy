@@ -12,6 +12,17 @@ drawRect() {
     rect(this.x, this.y, this.w, this.h);
     this.x += -3;
   }
+  
+  checkCollision() {
+    if (width / 2 + 50 > this.x && (width / 2) < this.x + this.w) {
+      if (yVal + mass - 10 > this.y && yVal < this.y + this.h) {
+        this.color = "red";
+      }
+    }
+    else {
+      this.color = "green";
+    }
+  }
 }
 
 var yVal;
@@ -62,6 +73,7 @@ function game() {
   }
   rects.forEach((p) => {
     p.drawRect()
+    p.checkCollision()
   });
 }
 
