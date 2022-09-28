@@ -16,7 +16,7 @@ drawRect() {
   checkCollision() {
     if (width / 2 + 50 > this.x && (width / 2) < this.x + this.w) {
       if (yVal + mass - 10 > this.y && yVal < this.y + this.h) {
-        this.color = "red";
+        this.color = "yellow";
       }
     }
     else {
