@@ -77,6 +77,12 @@ function game() {
   });
 }
 
+function keyPressed(spacebar) {
+  yVal + 40;
+  // - mass gedeeld door 6 om bij elke mass een proportionele stuiter te krijgen
+  velocity = -mass / 6;
+}
+
 function draw() {
   game()
 }
