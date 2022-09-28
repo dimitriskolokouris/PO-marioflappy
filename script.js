@@ -1,4 +1,4 @@
-class rect {
+class Rect {
   constructor(x, y, w, h) {
     this.x = x;
     this.y = y;
@@ -7,7 +7,7 @@ class rect {
     this.color = "green";
   }
 
-   drawRect() {
+drawRect() {
     fill(this.color);
     rect(this.x, this.y, this.w, this.h);
     this.x += -3;
@@ -20,10 +20,11 @@ var snelheid;
 var mass;
 var rects = [];
 
-let gameState = 0
+
 
 function setup() {
   createCanvas(640, 360);
+  backgroundIMG = loadImage("bg.jpg");
   yVal = 0;
   snelheid = 0;
   mass = 50;
@@ -32,7 +33,7 @@ function setup() {
 }
 
 function game() {
-
+  background(backgroundIMG)
 
   snelheid += acceleration;
   yVal += snelheid;
@@ -43,6 +44,25 @@ function game() {
     snelheid *= -0.6;
     yVal = height - mass / 2;
   }
+  if (frameCount % 85 == 0) {
+
+
+    randomHeight = random(height - 150);
+
+    rect1 = new Rect(700, 0, 50, randomHeight)
+    rect2 = new Rect(700, randomHeight + 150, 50, 300)
+
+    rects.push(rect1);
+    rects.push(rect2);
+
+    // remove unnessecary pipes
+    if (rects.length > 6) {
+      rects.splice(0, 2);
+    }
+  }
+  rects.forEach((p) => {
+    p.drawRect()
+  });
 }
 
 function draw() {
