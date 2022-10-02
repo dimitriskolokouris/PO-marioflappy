@@ -43,6 +43,9 @@ function setup() {
   acceleration = mass * 0.01;
 }
 
+
+
+
 function game() {
   background(backgroundIMG)
 
@@ -76,11 +79,23 @@ function game() {
     p.checkCollision()
   });
 }
+// 3 gamestate functions
+function startGame() {
+  background(pressStart);
+}
+
+function playGame() {
+  game();
+}
+
+function finishGame(){
+  background(endBackground);
+}
 
 function keyPressed(){
   if (key == ' '){
   yVal + 40;
-  // - mass gedeeld door 6 om bij elke mass een proportionele stuiter te krijgen
+  // - mass delen door 6 om een passend stuiter te krijgen
   snelheid = -mass / 6;
   }
 }
