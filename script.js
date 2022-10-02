@@ -32,7 +32,7 @@ var snelheid;
 var mass;
 var rects = [];
 
-
+let gameState = 0
 
 function setup() {
   createCanvas(640, 360);
@@ -42,9 +42,21 @@ function setup() {
   mass = 50;
   floppy = loadImage("mario.png");
   acceleration = mass * 0.01;
+  pressStart = loadImage("press start.png");
+  endBackground = loadImage("gameover.png");
 }
 
+function draw(){
 
+  if (gameState == 0) {
+    startGame();
+  } else if (gameState == 1) {
+    playGame();
+  } 
+  else if (gameState == 2) {
+    finishGame();
+  }
+}
 
 
 function game() {
@@ -101,6 +113,3 @@ function keyPressed(){
   }
 }
 
-function draw() {
-  game()
-}
