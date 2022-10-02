@@ -58,7 +58,6 @@ function draw(){
   }
 }
 
-
 function game() {
   background(backgroundIMG)
 
@@ -113,3 +112,14 @@ function keyPressed(){
   }
 }
 
+function mousePressed() {
+  console.log(gameState);
+  if (gameState == 0) {
+    gameState += 1;
+
+  } else if (gameState == 2) {
+    rects = [];
+
+    gameState = 0;
+  }  
+}
