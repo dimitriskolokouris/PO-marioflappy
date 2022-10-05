@@ -112,7 +112,7 @@ function game() {
   textSize(23);
   textFont(scoreletters);
   text('Score:', 70, 35)
-  text(score, 140, 35);
+  text(score, 150, 35);
 
 }
 
