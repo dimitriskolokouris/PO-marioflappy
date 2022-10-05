@@ -31,19 +31,21 @@ var acceleration;
 var snelheid;
 var mass;
 var rects = [];
+var score = 0;
 
 let gameState = 0
 
 function setup() {
   createCanvas(640, 360);
-  backgroundIMG = loadImage("bg.jpg");
+  backgroundIMG = loadImage("plaatjes/bg.jpg");
   yVal = 0;
   snelheid = 0;
   mass = 50;
-  floppy = loadImage("mario.png");
+  floppy = loadImage("plaatjes/mario.png");
   acceleration = mass * 0.01;
-  pressStart = loadImage("press start.png");
-  endBackground = loadImage("gameover.png");
+  pressStart = loadImage("plaatjes/press start.png");
+  endBackground = loadImage("plaatjes/gameover.png");
+  textAlign(CENTER);
 }
 
 function draw(){
@@ -86,11 +88,23 @@ function game() {
       rects.splice(0, 2);
     }
   }
+
+  if (frameCount % 95 == 0 && rects.length > 3.6) {
+    score = score + 1;
+  } 
+  
   rects.forEach((p) => {
     p.drawRect()
     p.checkCollision()
   });
+
+  fill('white');
+  textSize(25);
+  text('Score:', 50, 35)
+  text(score, 100, 35);
+
 }
+
 // 3 gamestate functions
 function startGame() {
   background(pressStart);
@@ -119,7 +133,8 @@ function mousePressed() {
 
   } else if (gameState == 2) {
     rects = [];
-
+    score = 0;
+    
     gameState = 0;
   }  
 }
