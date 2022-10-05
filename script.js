@@ -26,6 +26,17 @@ drawRect() {
   }
 }
 
+function preload(){
+  backgroundIMG = loadImage("plaatjes/bgmain.png");
+  floppy = loadImage("plaatjes/mario.png");
+  pressStart = loadImage("plaatjes/press start.png");
+  endBackground = loadImage("plaatjes/gameover.png");
+  ding = loadSound('mp3/ding.mp3');
+  jump = loadSound('mp3/jumpsound.mp3');
+  gameoversound = loadSound('mp3/gameover.mp3');
+  backgroundsong = loadSound('mp3/background.mp3');
+}
+
 var yVal;
 var acceleration;
 var snelheid;
@@ -37,15 +48,12 @@ let gameState = 0
 
 function setup() {
   createCanvas(640, 360);
-  backgroundIMG = loadImage("plaatjes/bg.jpg");
   yVal = 0;
   snelheid = 0;
   mass = 50;
-  floppy = loadImage("plaatjes/mario.png");
   acceleration = mass * 0.01;
-  pressStart = loadImage("plaatjes/press start.png");
-  endBackground = loadImage("plaatjes/gameover.png");
   textAlign(CENTER);
+ 
 }
 
 function draw(){
@@ -91,6 +99,7 @@ function game() {
 
   if (frameCount % 95 == 0 && rects.length > 3.6) {
     score = score + 1;
+    ding.play();
   } 
   
   rects.forEach((p) => {
@@ -123,6 +132,7 @@ function keyPressed(){
   yVal + 40;
   // - mass delen door 6 om een passend stuiter te krijgen
   snelheid = -mass / 6;
+  jump.play();
   }
 }
 
