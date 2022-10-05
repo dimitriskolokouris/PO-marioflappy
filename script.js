@@ -35,6 +35,7 @@ function preload(){
   jump = loadSound('mp3/jumpsound.mp3');
   gameoversound = loadSound('mp3/gameover.mp3');
   backgroundsong = loadSound('mp3/background.mp3');
+  scoreletters = loadFont('BACKTO1982.ttf');
 }
 
 var yVal;
@@ -97,7 +98,7 @@ function game() {
     }
   }
 
-  if (frameCount % 95 == 0 && rects.length > 3.6) {
+  if (frameCount % 85 == 0 && rects.length > 3.2) {
     score = score + 1;
     ding.play();
   } 
@@ -107,10 +108,11 @@ function game() {
     p.checkCollision()
   });
 
-  fill('white');
-  textSize(25);
-  text('Score:', 50, 35)
-  text(score, 100, 35);
+  fill('blue');
+  textSize(23);
+  textFont(scoreletters);
+  text('Score:', 70, 35)
+  text(score, 140, 35);
 
 }
 
