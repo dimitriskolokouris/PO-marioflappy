@@ -1,15 +1,16 @@
 class Rect {
-  constructor(x, y, w, h) {
+  constructor(x, y, w, h, img) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
     this.color = "green";
+    this.img = img;
   }
 
 drawRect() {
     fill(this.color);
-    rect(this.x, this.y, this.w, this.h);
+    image(this.img, this.x, this.y, this.w, this.h);
     this.x += -3;
   }
   
@@ -39,8 +40,8 @@ function preload(){
   backgroundsong = loadSound('mp3/background.mp3');
   scoreletters = loadFont('BACKTO1982.ttf');
   herewego = loadSound('mp3/herewego.mp3');
-  pipetop = loadImage("plaatjes/pipedown.png");
-  pipebot = loadImage("plaatjes/pipeup.png");
+  pipetop = loadImage("pipebelow.png");
+  pipebot = loadImage("pipeabove.png");
 }
 
 var gif_createImg;
@@ -92,8 +93,8 @@ function game() {
 
     randomHeight = random(height - 150);
 
-    rect1 = new Rect(700, 0, 50, randomHeight)
-    rect2 = new Rect(700, randomHeight + 150, 50, 300)
+    rect1 = new Rect(700, 0, 50, randomHeight, pipebot)
+    rect2 = new Rect(700, randomHeight + 150, 50, 300, pipetop)
 
     rects.push(rect1);
     rects.push(rect2);
