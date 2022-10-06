@@ -18,6 +18,8 @@ drawRect() {
       if (yVal + mass - 10 > this.y && yVal < this.y + this.h) {
         gameState = 2;
         this.color = "yellow";
+        gameoversound.play();
+        backgroundsong.stop();
       }
     }
     else {
@@ -29,15 +31,19 @@ drawRect() {
 function preload(){
   backgroundIMG = loadImage("plaatjes/bgmain.png");
   floppy = loadImage("plaatjes/mario.png");
-  pressStart = loadImage("plaatjes/press start.png");
-  endBackground = loadImage("plaatjes/gameover.png");
+  pressStart = loadImage("press start.gif");
+  endBackground = loadImage("gameover1.gif");
   ding = loadSound('mp3/ding.mp3');
   jump = loadSound('mp3/jumpsound.mp3');
   gameoversound = loadSound('mp3/gameover.mp3');
   backgroundsong = loadSound('mp3/background.mp3');
   scoreletters = loadFont('BACKTO1982.ttf');
+  herewego = loadSound('mp3/herewego.mp3');
+  pipetop = loadImage("plaatjes/pipedown.png");
+  pipebot = loadImage("plaatjes/pipeup.png");
 }
 
+var gif_createImg;
 var yVal;
 var acceleration;
 var snelheid;
@@ -54,13 +60,14 @@ function setup() {
   mass = 50;
   acceleration = mass * 0.01;
   textAlign(CENTER);
- 
+  
 }
 
 function draw(){
 
   if (gameState == 0) {
     startGame();
+    gameoversound.stop();
   } else if (gameState == 1) {
     playGame();
   } 
@@ -71,7 +78,6 @@ function draw(){
 
 function game() {
   background(backgroundIMG)
-
   snelheid += acceleration;
   yVal += snelheid;
   image(floppy, width / 2, yVal, mass + 20, mass - 10);
@@ -119,6 +125,13 @@ function game() {
 // 3 gamestate functions
 function startGame() {
   background(pressStart);
+  fill('red');
+  textSize(23);
+  textFont(scoreletters);
+  text('Welcome to Flappy Mario!', 310, 35)
+  text('Mouse',240,302)
+  text('To',40,330)
+  
 }
 
 function playGame() {
@@ -140,13 +153,16 @@ function keyPressed(){
 
 function mousePressed() {
   console.log(gameState);
+  herewego.play();
   if (gameState == 0) {
     gameState += 1;
+    backgroundsong.play();
 
   } else if (gameState == 2) {
     rects = [];
     score = 0;
-    
     gameState = 0;
   }  
 }
+
+
