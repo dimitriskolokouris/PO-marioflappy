@@ -32,16 +32,16 @@ drawRect() {
 function preload(){
   backgroundIMG = loadImage("plaatjes/bgmain.png");
   floppy = loadImage("plaatjes/mario.png");
-  pressStart = loadImage("press start.gif");
-  endBackground = loadImage("gameover1.gif");
+  pressStart = loadImage("plaatjes/press start.gif");
+  endBackground = loadImage("plaatjes/gameover1.gif");
   ding = loadSound('mp3/ding.mp3');
   jump = loadSound('mp3/jumpsound.mp3');
   gameoversound = loadSound('mp3/gameover.mp3');
   backgroundsong = loadSound('mp3/background.mp3');
   scoreletters = loadFont('BACKTO1982.ttf');
   herewego = loadSound('mp3/herewego.mp3');
-  pipetop = loadImage("pipebelow.png");
-  pipebot = loadImage("pipeabove.png");
+  pipetop = loadImage("plaatjes/pipetop.png");
+  pipebot = loadImage("plaatjes/pipebot.png");
 }
 
 var gif_createImg;
@@ -105,7 +105,7 @@ function game() {
     }
   }
 
-  if (frameCount % 85 == 0 && rects.length > 3.2) {
+  if (frameCount % 85 == 0 && rects.length > 3.0) {
     score = score + 1;
     ding.play();
   } 
@@ -141,6 +141,10 @@ function playGame() {
 
 function finishGame(){
   background(endBackground);
+    fill('blue');
+    textSize(23);
+    textFont(scoreletters);
+    text('Click Mouse To Play Again', 310, 35)
 }
 
 function keyPressed(){
