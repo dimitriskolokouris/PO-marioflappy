@@ -51,6 +51,7 @@ var snelheid;
 var mass;
 var rects = [];
 var score = 0;
+var highscore = 0;
 
 let gameState = 0
 
@@ -108,6 +109,9 @@ function game() {
   if (frameCount % 85 == 0 && rects.length > 3.0) {
     score = score + 1;
     ding.play();
+    if (score > highscore){
+      highscore = score;
+    }
   } 
   
   rects.forEach((p) => {
@@ -116,10 +120,12 @@ function game() {
   });
 
   fill('blue');
-  textSize(23);
+  textSize(20);
   textFont(scoreletters);
-  text('Score:', 70, 35)
-  text(score, 150, 35);
+  text('Score:', 70, 40);
+  text('Highscore:', 105, 70);
+  text(score, 145, 40);
+  text(highscore, 210, 70);
 
 }
 
